@@ -1,0 +1,78 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.planes {
+    background-color: v.$secundario;
+    h2 {
+        @include m.headingBorder(v.$blanco, v.$primario);   
+    }
+    .descripcion {
+        color: v.$blanco;
+    }
+}
+
+.nuestros-planes {
+    display: flex;
+    flex-direction: column;
+    @include m.tablet { 
+          flex-direction: row;
+          max-width: 80rem;
+          margin-inline: auto;
+          margin-block-start: 10rem;
+    }
+    .plan {
+        background-color: v.$blanco;
+        width: 100%;
+        padding: 16rem 4rem 4rem;
+        border-bottom: 1px solid v.$secundario;
+        @include m.tablet { 
+              border-bottom: none;
+              min-height: 51rem;
+              transition: transform .3s ease;
+
+              &:hover {
+                  transform: scale(1.1);
+              }
+        }
+       .precio {
+           text-align: center;
+           font-size: 1.8rem;
+           font-weight: 700;
+           text-transform: uppercase;
+       }
+       .listado {
+           li {
+               text-align: center;
+               margin-bottom: 2rem;
+
+               &:last-of-type {
+                   margin-bottom: 0;
+               }
+           }
+       }
+        &.inicio {
+            @include m.iconoBg('../img/icono_inicio.svg');
+            order: 1;
+            @include m.tablet { 
+                  order: unset;
+            }
+        }
+        &.negocio {
+            @include m.iconoBg('../img/icono_negocio.svg');
+            order: -1;
+            background-color: v.$primario;
+            @include m.tablet { 
+                 order: unset; 
+                 padding: calc(16rem + 5rem) 4rem 4rem;
+                 background-position: 50% 7rem;
+                 margin: -5rem 0;
+                 border-radius: 2rem;
+                 z-index: 3;
+            }
+        }
+        &.pro {
+            @include m.iconoBg('../img/icono_pro.svg');
+        }
+    }
+    
+}
